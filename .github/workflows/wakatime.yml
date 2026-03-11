@@ -11,14 +11,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Use a stable release of the WakaTime README action
-      - uses: athul/waka-readme@v1.1.0   # <-- official release
+      # Install Python (if not already)
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
+          python-version: 3.11
+
+      # Install WakaTime CLI 14.0.1
+      - name: Install WakaTime CLI
+        run: python -m pip install wakatime==14.0.1
+
+      # Run WakaTime CLI to update README
+      - name: Update README
+        env:
           WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
-          WAKATIME_CLI_VERSION: 14.0.1    # <-- your installed version
-          SHOW_TITLE: true
-          SHOW_TIME_ZONE: false
-          SHOW_LANGUAGE: true
-          SHOW_OS: true
-          SHOW_PROJECTS: true
-          SHOW_EDITORS: true
+        run: |
+          # Make sure README has START/END markers
+          FILE=README.md
+          if ! grep -q "<!--START_SECTION:waka-->" $FILE; then
+            echo -e "\n<!--START_SECTION:waka-->\n<!--END_SECTION:waka-->" >> $FILE
+          fi
+
+          # Update README with stats for the week
+          wakatime --today --update --file $FILE
