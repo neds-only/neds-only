@@ -8,29 +8,43 @@ on:
 jobs:
   update-readme:
     runs-on: ubuntu-latest
+
     steps:
+      # Step 1: Checkout your repository
       - uses: actions/checkout@v4
 
-      # Install Python (if not already)
+      # Step 2: Set up Python 3.11
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: 3.11
 
-      # Install WakaTime CLI 14.0.1
+      # Step 3: Install WakaTime CLI version 14.0.1
       - name: Install WakaTime CLI
-        run: python -m pip install wakatime==14.0.1
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install wakatime==14.0.1
 
-      # Run WakaTime CLI to update README
+      # Step 4: Update README with WakaTime stats
       - name: Update README
         env:
           WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
         run: |
-          # Make sure README has START/END markers
           FILE=README.md
-          if ! grep -q "<!--START_SECTION:waka-->" $FILE; then
-            echo -e "\n<!--START_SECTION:waka-->\n<!--END_SECTION:waka-->" >> $FILE
+          START="<!--START_SECTION:waka-->"
+          END="<!--END_SECTION:waka-->"
+
+          # Ensure README has markers
+          if ! grep -q "$START" $FILE; then
+            echo -e "\n$START\n$END" >> $FILE
           fi
 
-          # Update README with stats for the week
-          wakatime --today --update --file $FILE
+          # Fetch today's coding stats
+          STATS=$(wakatime --today)
+
+          # Replace content between markers with stats
+          awk -v start="$START" -v end="$END" -v stats="$STATS" '
+            {print}
+            $0 ~ start {print stats; getline; while($0 !~ end) getline}
+          ' $FILE > temp.md
+          mv temp.md $FILE
