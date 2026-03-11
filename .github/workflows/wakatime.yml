@@ -3,7 +3,7 @@ name: WakaTime Readme
 on:
   schedule:
     - cron: '0 * * * *'  # Runs every hour
-  workflow_dispatch:     # Allows manual trigger
+  workflow_dispatch:
 
 jobs:
   update-readme:
@@ -11,11 +11,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Use the WakaTime action with specific CLI version
-      - uses: athul/waka-readme@latest
+      # Use a stable release of the WakaTime README action
+      - uses: athul/waka-readme@v1.1.0   # <-- official release
         with:
           WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
-          WAKATIME_CLI_VERSION: 14.0.1   # <-- explicitly set your version
+          WAKATIME_CLI_VERSION: 14.0.1    # <-- your installed version
           SHOW_TITLE: true
           SHOW_TIME_ZONE: false
           SHOW_LANGUAGE: true
