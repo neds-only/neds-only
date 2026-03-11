@@ -13,13 +13,9 @@ jobs:
       - uses: athul/waka-readme@v2
         with:
           WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
-      - uses: athul/waka-readme@v2
-        with:
-          WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
           SHOW_TITLE: true
           SHOW_TIME_ZONE: false
           SHOW_LANGUAGE: true
           SHOW_OS: true
           SHOW_PROJECTS: true
           SHOW_EDITORS: true
-      
