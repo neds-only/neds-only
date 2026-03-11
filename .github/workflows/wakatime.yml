@@ -10,9 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      # Use the WakaTime action with specific CLI version
       - uses: athul/waka-readme@latest
         with:
           WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
+          WAKATIME_CLI_VERSION: 14.0.1   # <-- explicitly set your version
           SHOW_TITLE: true
           SHOW_TIME_ZONE: false
           SHOW_LANGUAGE: true
