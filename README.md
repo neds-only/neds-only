@@ -1,7 +1,10 @@
 # Hi, I'm Nedha 👋
 
 ## 🖥️ Hackatime Stats
-![Hackatime Stats](https://hack-readme-stats.hackclub.dev/api/wakatime?username=30279&api_domain=hackatime.hackclub.com&theme=dark&custom_title=Hackatime+Stats&layout=compact&cache_seconds=0&langs_count=8)
+![Total Coding Time](https://hackatime.hackclub.com/badges/github/30279/total)
 
-## 🖥️ Hackatime Charts
-{{ wakatimeDoubleCategoryBar "Languages:" wakatimeData.Languages "Projects:" wakatimeData.Projects 5 }}
+## 🖥️ Top Languages
+![Top Languages](https://hackatime.hackclub.com/badges/github/30279/languages)
+
+## 🖥️ Top Projects
+![Top Projects](https://hackatime.hackclub.com/badges/github/30279/projects)
