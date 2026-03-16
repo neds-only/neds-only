@@ -1,10 +1,4 @@
 # Hi, I'm Nedha 👋
 
 ## 🖥️ Hackatime Stats
-![Total Coding Time](https://hackatime.hackclub.com/badges/github/30279/total)
-
-## 🖥️ Top Languages
-![Top Languages](https://hackatime.hackclub.com/badges/github/30279/languages)
-
-## 🖥️ Top Projects
-![Top Projects](https://hackatime.hackclub.com/badges/github/30279/projects)
+https://github-readme-stats.hackclub.dev/api/wakatime?username=30279&api_domain=hackatime.hackclub.com&theme=dark&custom_title=Hackatime+Stats&layout=compact&cache_seconds=0&langs_count=8
