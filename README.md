@@ -1,4 +1,7 @@
-## 🖥️ Coding Activity
+# Hi, I'm Nedha 👋
 
-<!--START_HACKATIME_STATS-->
-<!--END_HACKATIME_STATS-->
+## 🖥️ Hackatime Stats
+![Hackatime Stats](https://hack-readme-stats.hackclub.dev/api/wakatime?username=30279&api_domain=hackatime.hackclub.com&theme=dark&custom_title=Hackatime+Stats&layout=compact&cache_seconds=0&langs_count=8)
+
+## 🖥️ Hackatime Charts
+{{ wakatimeDoubleCategoryBar "Languages:" wakatimeData.Languages "Projects:" wakatimeData.Projects 5 }}
