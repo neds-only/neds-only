@@ -1,4 +1,4 @@
-## 📊 WakaTime Stats
+## 🖥️ Coding Activity
 
-<!--START_SECTION:waka-->
-<!--END_SECTION:waka-->
+<!--START_HACKATIME_STATS-->
+<!--END_HACKATIME_STATS-->
