@@ -1,4 +1,4 @@
-name: Update Hackatime Stats
+name: Update Hackatime Projects Table
 
 on:
   schedule:
@@ -18,7 +18,7 @@ jobs:
           https://hackatime.hackclub.com/api/hackatime/v1/users/current/stats/last_7_days \
           > data.json
 
-      - name: Generate README with side-by-side tables and bars
+      - name: Generate README with Projects table and bars
         run: |
           python3 - << 'EOF'
           import json
@@ -36,26 +36,11 @@ jobs:
               f.write("## 🖥️ Hackatime Stats\n")
               f.write("![Hackatime Stats](https://github-readme-stats.hackclub.dev/api/wakatime?username=30279&api_domain=hackatime.hackclub.com&theme=dark&custom_title=Hackatime+Stats&layout=compact&cache_seconds=0&langs_count=8)\n\n")
 
-              # HTML wrapper for side-by-side tables
-              f.write("<table><tr>\n")
-
-              # Languages table
-              f.write("<td valign='top'>\n")
-              f.write("### Languages\n\n")
-              f.write("| Language | Progress | Time |\n|----------|---------|------|\n")
-              for lang in d['languages']:
-                  f.write(f"| {lang['name']} | {bar(lang['percent'])} | {lang['text']} |\n")
-              f.write("</td>\n")
-
-              # Projects table
-              f.write("<td valign='top'>\n")
+              # Projects table only
               f.write("### Projects\n\n")
               f.write("| Project | Progress | Time |\n|---------|---------|------|\n")
               for proj in d['projects']:
                   f.write(f"| {proj['name']} | {bar(proj['percent'])} | {proj['text']} |\n")
-              f.write("</td>\n")
-
-              f.write("</tr></table>\n")
           EOF
 
       - name: Commit and push
@@ -63,5 +48,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add README.md
-          git commit -m "Update Hackatime stats" || echo "No changes to commit"
+          git commit -m "Update Hackatime projects table" || echo "No changes to commit"
           git push "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" HEAD:main
