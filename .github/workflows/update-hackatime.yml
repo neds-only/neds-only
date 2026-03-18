@@ -1,4 +1,4 @@
-name: Update Hackatime Table
+name: Update Hackatime Projects Table
 
 on:
   schedule:
@@ -18,7 +18,7 @@ jobs:
           https://hackatime.hackclub.com/api/hackatime/v1/users/current/stats/last_7_days \
           > data.json
 
-      - name: Generate Markdown table (side-by-side)
+      - name: Generate Projects table
         run: |
           python3 - << 'EOF'
           import json
@@ -32,26 +32,11 @@ jobs:
               f.write("## 🖥️ Hackatime Stats\n")
               f.write("![Hackatime Stats](https://github-readme-stats.hackclub.dev/api/wakatime?username=30279&api_domain=hackatime.hackclub.com&theme=dark&custom_title=Hackatime+Stats&layout=compact&cache_seconds=0&langs_count=8)\n\n")
 
-              # HTML table wrapper for side-by-side tables
-              f.write("<table>\n<tr>\n")
-
-              # Languages table
-              f.write("<td>\n")
-              f.write("<b>Languages<b>\n\n")
-              f.write("| Language | Time |\n|----------|------|\n")
-              for lang in d['languages']:
-                  f.write(f"| {lang['name']} | {lang['text']} |\n")
-              f.write("</td>\n")
-
-              # Projects table
-              f.write("<td>\n")
-              f.write("<b>Projects<b>\n\n")
+              # Projects table only
+              f.write("### Projects\n\n")
               f.write("| Project | Time |\n|---------|------|\n")
               for proj in d['projects']:
                   f.write(f"| {proj['name']} | {proj['text']} |\n")
-              f.write("</td>\n")
-
-              f.write("</tr>\n</table>\n")
           EOF
 
       - name: Commit and push
@@ -59,5 +44,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add README.md
-          git commit -m "Update Hackatime table" || echo "No changes"
+          git commit -m "Update Hackatime projects table" || echo "No changes"
           git push "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" HEAD:main
