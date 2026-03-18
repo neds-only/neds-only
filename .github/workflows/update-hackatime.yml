@@ -32,13 +32,13 @@ jobs:
               f.write("![Hackatime Stats](https://github-readme-stats.hackclub.dev/api/wakatime?username=30279&api_domain=hackatime.hackclub.com&theme=dark&custom_title=Hackatime+Stats&layout=compact&cache_seconds=0&langs_count=8)\n\n")
 
               # Add a table for languages
-              f.write("### Languages (Detail)\n\n")
+              f.write("### Languages\n\n")
               f.write("| Language | Time |\n|----------|------|\n")
               for lang in d['languages']:
                   f.write(f"| {lang['name']} | {lang['text']} |\n")
 
               # Add a table for projects
-              f.write("\n### Projects (Detail)\n\n")
+              f.write("\n### Projects\n\n")
               f.write("| Project | Time |\n|---------|------|\n")
               for proj in d['projects']:
                   f.write(f"| {proj['name']} | {proj['text']} |\n")
