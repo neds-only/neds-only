@@ -6,7 +6,7 @@
 <table>
 <tr>
 <td>
-### Languages
+<b>Languages<b>
 
 | Language | Time |
 |----------|------|
@@ -15,7 +15,7 @@
 | PLAIN_TEXT | 0 hrs 16 mins |
 </td>
 <td>
-### Projects
+<b>Projects<b>
 
 | Project | Time |
 |---------|------|
