@@ -1,65 +1,9 @@
-name: Update Hackatime Stats
-
+name: Test Workflow
 on:
-  schedule:
-    - cron: "0 0 * * 0"  # weekly, Sunday midnight UTC
   workflow_dispatch:
 
 jobs:
-  update-readme:
+  hello:
     runs-on: ubuntu-latest
-
     steps:
-      # Step 1: Checkout the repository
-      - uses: actions/checkout@v3
-
-      # Step 2: Fetch Hackatime data
-      - name: Fetch Hackatime data
-        run: |
-          curl -s -H "Authorization: Bearer ${{ secrets.HACKATIME_API_KEY }}" \
-          https://hackatime.hackclub.com/api/hackatime/v1/users/current/stats/last_7_days \
-          > data.json
-
-      # Step 3: Generate README with tables and bar-style stats
-      - name: Generate README with bar-style stats
-        run: |
-          python3 - << 'EOF'
-          import json
-
-          # Load Hackatime JSON data
-          with open("data.json") as f:
-              d = json.load(f)['data']
-
-          # Function to generate proportional bar
-          def bar(percent, length=20):
-              filled = int(percent / 100 * length)
-              return "▇" * filled + "░" * (length - filled)
-
-          # Write README.md
-          with open("README.md", "w") as f:
-              f.write("# Hackatime Weekly Stats\n\n")
-              f.write(f"**Total coding time:** {d['human_readable_total']}\n\n")
-
-              # Languages table
-              f.write("## Languages\n\n")
-              f.write("| Language | Usage |\n")
-              f.write("|----------|-------|\n")
-              for lang in d['languages']:
-                  f.write(f"| {lang['name']} | {bar(lang['percent'])} {lang['text']} |\n")
-
-              # Projects table
-              f.write("\n## Projects\n\n")
-              f.write("| Project | Usage |\n")
-              f.write("|---------|-------|\n")
-              for proj in d['projects']:
-                  f.write(f"| {proj['name']} | {bar(proj['percent'])} {proj['text']} |\n")
-          EOF
-
-      # Step 4: Commit and push changes to GitHub
-      - name: Commit and push
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add README.md
-          git commit -m "Update stats" || echo "No changes"
-          git push "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" HEAD:main
+      - run: echo "Hello Actions!"
