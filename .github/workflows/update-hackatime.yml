@@ -37,7 +37,7 @@ jobs:
 
               # Languages table
               f.write("<td>\n")
-              f.write("### Languages\n\n")
+              f.write("<b>Languages<b>\n\n")
               f.write("| Language | Time |\n|----------|------|\n")
               for lang in d['languages']:
                   f.write(f"| {lang['name']} | {lang['text']} |\n")
@@ -45,7 +45,7 @@ jobs:
 
               # Projects table
               f.write("<td>\n")
-              f.write("### Projects\n\n")
+              f.write("<b>Projects<b>\n\n")
               f.write("| Project | Time |\n|---------|------|\n")
               for proj in d['projects']:
                   f.write(f"| {proj['name']} | {proj['text']} |\n")
