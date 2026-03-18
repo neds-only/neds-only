@@ -18,30 +18,40 @@ jobs:
           https://hackatime.hackclub.com/api/hackatime/v1/users/current/stats/last_7_days \
           > data.json
 
-      - name: Generate Markdown table
+      - name: Generate Markdown table (side-by-side)
         run: |
           python3 - << 'EOF'
           import json
+
           with open("data.json") as f:
               d = json.load(f)['data']
 
           with open("README.md", "w") as f:
-              # Keep your current header & image
+              # Header & image
               f.write("# Hi, I’m Nedha! 👋\n\n")
               f.write("## 🖥️ Hackatime Stats\n")
               f.write("![Hackatime Stats](https://github-readme-stats.hackclub.dev/api/wakatime?username=30279&api_domain=hackatime.hackclub.com&theme=dark&custom_title=Hackatime+Stats&layout=compact&cache_seconds=0&langs_count=8)\n\n")
 
-              # Add a table for languages
+              # HTML table wrapper for side-by-side tables
+              f.write("<table>\n<tr>\n")
+
+              # Languages table
+              f.write("<td>\n")
               f.write("### Languages\n\n")
               f.write("| Language | Time |\n|----------|------|\n")
               for lang in d['languages']:
                   f.write(f"| {lang['name']} | {lang['text']} |\n")
+              f.write("</td>\n")
 
-              # Add a table for projects
-              f.write("\n### Projects\n\n")
+              # Projects table
+              f.write("<td>\n")
+              f.write("### Projects\n\n")
               f.write("| Project | Time |\n|---------|------|\n")
               for proj in d['projects']:
                   f.write(f"| {proj['name']} | {proj['text']} |\n")
+              f.write("</td>\n")
+
+              f.write("</tr>\n</table>\n")
           EOF
 
       - name: Commit and push
