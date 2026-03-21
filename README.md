@@ -7,5 +7,4 @@
 
 | Project | Progress | Time |
 |---------|---------|------|
-| dodgeit! | ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇░ | 2 hrs 33 mins |
-| unknown | ░░░░░░░░░░░░░░░░░░░░ | 0 hrs 2 mins |
+| dodgeit! | ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ | 2 hrs 27 mins |
